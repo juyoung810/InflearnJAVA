@@ -14,8 +14,8 @@ import java.nio.Buffer;
 public class Project01_D {
     public static void main(String[] args) {
         //String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
-        String client_id = "d9oplt12c8";
-        String client_secret = "7coqOl1Nn48TH3StkA3vbGobMH3hxCJB7QLaMyH8";
+        String client_id = "{env.map_id}";
+        String client_secret = "{env.map_key}";
         // System.in은 Byte code 이기 때문에 InputStreamReader를 거친 후 문자로 바꿔 한줄로 연결할 수 있다.
         BufferedReader io = new BufferedReader((new InputStreamReader(System.in)));
         try {
