@@ -1,3 +1,4 @@
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -13,9 +14,9 @@ import java.nio.Buffer;
 
 public class Project01_D {
     public static void main(String[] args) {
-        //String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
-        String client_id = "{env.map_id}";
-        String client_secret = "{env.map_key}";
+        Dotenv dotenv = Dotenv.load();
+        String client_id = dotenv.get("map_id");
+        String client_secret = dotenv.get("map_key");
         // System.in은 Byte code 이기 때문에 InputStreamReader를 거친 후 문자로 바꿔 한줄로 연결할 수 있다.
         BufferedReader io = new BufferedReader((new InputStreamReader(System.in)));
         try {

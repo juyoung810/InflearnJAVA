@@ -1,3 +1,4 @@
+import kr.inflearn.DownloadBroker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -37,9 +38,39 @@ public class Project02_B {
                     System.out.println(li.select(".sub").first().text());
                 }
             }
+            // mp3 다운로드 (bible site_
+            /*Element source = doc.select("source").first();
+            String audio = source.attr("src").trim();
+            System.out.println(audio);
+            String fileName = audio.substring(audio.lastIndexOf("/")+1);*/
+
+            // 이미지 다운로드// 몇번째 thumb > img 인지 index로 고를수도 있다.
+            Element source = doc.select(".thumb > img").get(2);
+            // source 로 받아온 태그 안의 src 요소를 가져오되, 띄어쓰기 있으면 없앤다 (trim)
+            String imgUrl = source.attr("src").trim();
+            // imgUrl에서 마지막 = 이 있는 last index 다음 부터 끝까지
+            //https://thumb.pann.com/tc_110x70/http://fimg5.pann.com/new/download.jsp?FileID=60748670
+            String fileName = imgUrl.substring(imgUrl.lastIndexOf("=")+1)+".jpg";
+            Runnable r = new DownloadBroker(imgUrl,fileName);
+            //Thread 에서 해당 Runnable를 실행시킨다.
+            Thread dLoad = new Thread(r);
+            dLoad.start();
+            // Thread 가 먼저 끝날 수 있기 때문에, main class 10초 대기 시킨다.
+            for(int i = 0 ; i <10 ;i++)
+            {
+                try{
+                    Thread.sleep(1000); // 1초
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                System.out.print(""+(i+1));
+            }
+            System.out.println();
+            System.out.println("================================================");
         }catch (Exception e)
         {
             e.printStackTrace();
         }
+
     }
 }

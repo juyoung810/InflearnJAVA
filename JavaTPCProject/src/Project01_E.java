@@ -13,7 +13,7 @@ import java.util.Date;
 public class Project01_E {
 
     // 지도 이미지 생성 메서드
-    public static void map_services(String point_x, String point_y, String address) {
+    public static void map_services(String point_x, String point_y, String address,String client_id,String client_secret) {
         // static map 주소 URL -> 이미지 반환해준다.
         String URL_STATICMAP = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?";
         try {
@@ -27,8 +27,8 @@ public class Project01_E {
             URL u = new URL(url);
             HttpURLConnection con = (HttpURLConnection) u.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "{env.map_id}");
-            con.setRequestProperty("X-NCP-APIGW-API-KEY","${env.map_key}");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", client_id);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY",client_secret);
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if(responseCode == 200) // 정상 호출
@@ -66,9 +66,11 @@ public class Project01_E {
     public static void main(String[] args) {
 
         //String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
-        String client_id = "S{env.map_id}";
+        Dotenv dotenv = Dotenv.load();
+        String client_id = dotenv.get("map_id");
+        String client_secret = dotenv.get("map_key");
+        
         // System.in은 Byte code 이기 때문에 InputStreamReader를 거친 후 문자로 바꿔 한줄로 연결할 수 있다.
-        String client_secret = "${snv.map_key";
         BufferedReader io = new BufferedReader((new InputStreamReader(System.in)));
         try {
             System.out.print("주소를 입력하세요: ");
@@ -117,7 +119,7 @@ public class Project01_E {
                 z = (String) temp.get("roadAddress");
             }
 
-            map_services(x,y,z);
+            map_services(x,y,z,client_id,client_secret);
         }catch (IOException e) {
             e.printStackTrace();
         }

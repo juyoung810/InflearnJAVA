@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="annotations-13.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../lib/jar_files/annotations-13.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../lib/jar_files/java-dotenv-3.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../lib/jar_files/kotlin-stdlib-1.2.21.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

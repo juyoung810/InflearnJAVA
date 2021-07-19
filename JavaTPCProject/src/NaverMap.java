@@ -1,3 +1,4 @@
+import io.github.cdimascio.dotenv.Dotenv;
 import kr.inflearn.AddressVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,8 +26,9 @@ public class NaverMap implements ActionListener {
     // 주소를 서버로 받아서 경도 위도 가져와야한다.
     public void actionPerformed(ActionEvent e)
     {
-        String clientId = "{env.map_id}";
-        String clientSecret = "{env.map_key}";
+        Dotenv dotenv = Dotenv.load();
+        String client_id = dotenv.get("map_id");
+        String client_secret = dotenv.get("map_key");
         AddressVO vo = null;
         try{
             String address = naverMap.address.getText(); // 우리가 입력한 주소 객체가 넘어온다.
@@ -36,8 +38,8 @@ public class NaverMap implements ActionListener {
             URL url = new URL(apiUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
-            con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", client_id);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY", client_secret);
 
             int responseCode = con.getResponseCode(); // 200
             BufferedReader br;
@@ -69,14 +71,14 @@ public class NaverMap implements ActionListener {
                 vo.setY((String) temp.get("y"));
             }
             // -> vo 정보를 가지고 map을 만들기 위해서
-            map_service(vo);
+            map_service(vo,client_id,client_secret);
         }catch (Exception err)
         {
             System.out.println(err);
         }
     }
 
-    private void map_service(AddressVO vo) {
+    private void map_service(AddressVO vo,String client_id,String client_secret) {
         String URL_STATICMAP = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?";
         try {
             String pos = URLEncoder.encode(vo.getX()+" "+vo.getY(),"UTF-8");
@@ -89,8 +91,8 @@ public class NaverMap implements ActionListener {
             URL u = new URL(url);
             HttpURLConnection con = (HttpURLConnection) u.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID","{env.map_id}" );
-            con.setRequestProperty("X-NCP-APIGW-API-KEY","{env.map_key}");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID",client_id );
+            con.setRequestProperty("X-NCP-APIGW-API-KEY",client_secret);
             int responseCode = con.getResponseCode();
             BufferedReader br;
             if(responseCode == 200) // 정상 호출
