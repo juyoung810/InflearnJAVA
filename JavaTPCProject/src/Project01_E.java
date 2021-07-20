@@ -69,7 +69,7 @@ public class Project01_E {
         Dotenv dotenv = Dotenv.load();
         String client_id = dotenv.get("map_id");
         String client_secret = dotenv.get("map_key");
-        
+
         // System.in은 Byte code 이기 때문에 InputStreamReader를 거친 후 문자로 바꿔 한줄로 연결할 수 있다.
         BufferedReader io = new BufferedReader((new InputStreamReader(System.in)));
         try {
