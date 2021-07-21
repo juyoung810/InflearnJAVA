@@ -1,3 +1,5 @@
+package Project01_Map;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken; // reflection 역추적해서 뭔가를 만들어내는 기법
 import kr.inflearn.BookDTO;

@@ -1,3 +1,5 @@
+package Project02_Crawling;
+
 import kr.inflearn.DownloadBroker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

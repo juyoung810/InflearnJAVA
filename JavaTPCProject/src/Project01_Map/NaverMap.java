@@ -1,10 +1,11 @@
+package Project01_Map;
+
 import io.github.cdimascio.dotenv.Dotenv;
 import kr.inflearn.AddressVO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import javax.imageio.IIOException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

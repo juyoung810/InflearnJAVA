@@ -1,3 +1,5 @@
+package Project02_Crawling;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

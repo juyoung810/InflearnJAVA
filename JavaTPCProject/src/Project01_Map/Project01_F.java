@@ -1,3 +1,5 @@
+package Project01_Map;
+
 import javax.swing.*;
 import java.awt.*;
 
