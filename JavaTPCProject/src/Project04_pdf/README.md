@@ -72,4 +72,4 @@
     doc.add(table); // 문서에 table 부착한다.
     ```  
 
-![resultbookpdfimg](.\img\bookpdfresult.JPG)
+![resultbookpdfimg](./JavaTPCProject/img/bookpdfresult.JPG)
