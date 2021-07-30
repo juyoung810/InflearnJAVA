@@ -1,8 +1,9 @@
 # Java iText API 활용 PDF 프로젝트
 > java itext api를 활용해서 pdf 를 생성한다.
 
-##1. iText API를 이용한 PDF table 만들기
+## 1. iText API를 이용한 PDF table 만들기
 > itextpdf-5.5.13.jar 사용
+
 - 메모리에 PDF 파일을 임시로 만들어서 그 안에 data 만든 다음, 실제 pdf 에쓴다.
 - 이떄 임시 파일을 `document` 라고 부른다. + 사이즈 지정 가능
     ```java
@@ -72,7 +73,7 @@
     ```  
 - 항상 doc를 다 작성한 후, finally 통해서 에러의 여부와 상관없이 `doc.close` 해준다.
 
-![resultbookpdfimg](C:\JavaTPC\workspace\JavaTPCProject\img\bookpdfresult.JPG)
+![resultbookpdfimg](https://github.com/juyoung810/InflearnJAVA/blob/3d039ced8397115da7fb914cafb3190044b67bf8/JavaTPCProject/img/bookpdfresult.JPG)
 
 ##2. PDF에 Paragraph(단락, 문단, 절) 만들기 
 - table 내부가 아닌 그냥 문단, 절 을 만들 때는 `Paragraph` 사용
@@ -117,3 +118,4 @@ image = Image.getInstance(url);
 doc.add(image);
 
 ```
+
