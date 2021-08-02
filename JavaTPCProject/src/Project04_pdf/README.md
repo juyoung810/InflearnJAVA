@@ -119,3 +119,17 @@ doc.add(image);
 
 ```
 
+3. PDF에 image 크기 조절
+- 가로,세로 크기 지정 방법 (가로, 세로 크기를 float 로 지정한다.) 
+  `image.scaleAbsoulte(200f,200f)` 
+  
+- 비율(퍼센트)로 크기 지정 (기존: 100f -> 지정f : 몇 배)
+  `image.scalePercent(200f)`
+  
+- 고정된 크기 지정 후, 이미지가 해당 박스 크기에 맞게 들어간다.
+  `image.scaleToFit(100f,200f)`
+  
+## 4. Excel에서 데이터를 읽어서 PDF로 만들기
+1. 기존에 존재하는 excel를 열어서, 데이터를 한 줄 씩 읽어 ExcelVO 에 저장한다.
+2. 해당 ExcelVO를 함수로 전달해 pdf 에 쓸 수 있도록 한다.
+3. pdf 에 table를 생성해 각 row의 data을 vo에서 꺼내 쓴다.
