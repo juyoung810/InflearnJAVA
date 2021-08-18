@@ -69,3 +69,16 @@ Socket sock = new Socket("ip주소",9000);
 - client가 보낸 메세지 server가 그대로 반환하는 프로그램
 - 소스코드 참고 `/JavaTPCProject/src/Project06_Socket/ProjectA...`
 ---
+
+## Socket을 이용한 Multi-Chatting 만들기
+#### [server]
+1. 여러 client의 정보 저장 위해 HashMap 사용
+- key : client 이름, value: client에 연결된 outputStream
+2. client 접속하면 대기하다가 소켓 만들어지면 thread를 실행해서 해당 소켓에 대한 in,out stream을 만들 수 있도록 한다.
+3. thread가 실행되면 client의 이름이 hashmap에 존재하지 않을 시, hashmap에 이름 ,outstream을 저장하고
+data 를 계속 읽어서, 연결된 모든 client에게 broadcasting 한다.
+   
+#### [client]
+1. 서버의 정보를 가지고, 이름을 보내 연결한다.
+2. 보내는 thread 에서는, quit을 입력하기 전까지 계속해서 서버에 데이터 보낸다.
+3. 받는 thread 에서는 , data를 서버로 부터 계속 받는다.
